@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Header with Call Now</title>
+    <link rel="stylesheet" href="">
+    <!-- Include FontAwesome CDN in the <head> for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+
+
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header */
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 10%;
+            background-color: #F4F6FF;
+            color: #10375C;
+            position: relative;
+        }
+
+        /* Navigation Links */
+        .nav-links ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links ul li {
+            margin: 0 15px;
+        }
+
+        .nav-links ul li a {
+            color: #10375C;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .call-now button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            /* Initially hide the hamburger menu on desktop */
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 100;
+            height: auto;
+            padding: 5px;
+        }
+
+        .hamburger-menu .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.open .bar:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger-menu.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.open .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+
+            /* On mobile, hide desktop menu */
+            .nav-links {
+                display: none;
+                /* Hide the normal nav links */
+            }
+
+            /* Show the hamburger menu on mobile */
+            .hamburger-menu {
+                display: flex;
+                /* Show hamburger menu on mobile */
+            }
+
+            .call-now {
+                display: none;
+                /* Hide the 'Call Now' button on mobile */
+            }
+
+            /* Mobile Sliding Menu */
+            /* Mobile Sliding Menu */
+            .sliding-menu {
+                display: none;
+                position: fixed;
+                top: 4rem;
+                /* Adjusted to make the hamburger cross mark visible */
+                right: -250px;
+                width: 250px;
+                height: auto;
+                max-height: 60%;
+                background-color: #333;
+                padding-top: 60px;
+                transition: right 0.3s ease-in-out;
+                z-index: 1000;
+            }
+
+
+            .sliding-menu.open {
+                right: 0;
+                display: block;
+            }
+
+            .sliding-menu ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            .sliding-menu ul li {
+                padding: 10px;
+                text-align: left;
+            }
+
+            .sliding-menu ul li a {
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+            }
+
+            .sliding-menu ul li button {
+                margin-top: 10px;
+                color: white;
+                background: transparent;
+                border: none;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            /* Adjust the hamburger button */
+            .hamburger-menu .bar {
+                width: 30px;
+                height: 4px;
+            }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 769px) {
+
+            /* On desktop, show the regular navigation links */
+            .nav-links {
+                display: flex;
+            }
+
+            /* Hide the hamburger menu on desktop */
+            .hamburger-menu {
+                display: none;
+            }
+
+            .call-now {
+                display: block;
+                /* Show the 'Call Now' button on desktop */
+            }
+
+            /* Ensure the sliding menu is hidden on desktop */
+            .sliding-menu {
+                display: none;
+            }
+        }
+
+        /* Button 86 styles */
+        .button-86 {
+            all: unset;
+            width: 100px;
+            height: 30px;
+            font-size: 16px;
+            background: transparent;
+            border: none;
+            position: relative;
+            color: #f0f0f0;
+            cursor: pointer;
+            z-index: 1;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .button-86::after,
+        .button-86::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: -99999;
+            transition: all .4s;
+        }
+
+        .button-86::before {
+            transform: translate(0%, 0%);
+            width: 100%;
+            height: 100%;
+            background: #28282d;
+            border-radius: 10px;
+        }
+
+        .button-86::after {
+            transform: translate(10px, 10px);
+            width: 35px;
+            height: 35px;
+            background: #ffffff15;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 50px;
+        }
+
+        .button-86:hover::before {
+            transform: translate(5%, 20%);
+            width: 110%;
+            height: 110%;
+        }
+
+        .button-86:hover::after {
+            border-radius: 10px;
+            transform: translate(0, 0);
+            width: 100%;
+            height: 100%;
+        }
+
+        .button-86:active::after {
+            transition: 0s;
+            transform: translate(0, 5%);
+        }
+
+
+        /* Hero Section */
+        .hero {
+            height: 50vh;
+            /* Set the height to 50% of the viewport */
+            background: url('/ASSETS/images.jpg') center/cover no-repeat;
+            /* Set your background image here */
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            /* Align the content to the left */
+            padding-left: 20px;
+            /* Add some padding to the left side */
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 50%;
+            /* Limit the content width to 50% of the container */
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .hero .links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero .links a {
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .hero .links a:hover {
+            background-color: white;
+            color: #333;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 1200px) {
+            .hero {
+                padding-left: 15px;
+                /* Slightly reduce padding for medium screens */
+                justify-content: flex-start;
+                /* Align content to the left */
+            }
+
+            .hero-content {
+                max-width: 60%;
+                /* Slightly increase content width */
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+                /* Adjust font size for medium screens */
+            }
+
+            .hero .links a {
+                font-size: 1.1rem;
+                /* Adjust link font size */
+                padding: 7px 12px;
+                /* Slightly reduce padding */
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                justify-content: center;
+                padding-left: 10px;
+                /* Center content on medium to small screens */
+            }
+
+            .hero-content {
+                max-width: 70%;
+                /* Increase content width to fill more space */
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                /* Smaller font size */
+            }
+
+            .hero .links a {
+                font-size: 1rem;
+                /* Smaller font size for links */
+                padding: 6px 10px;
+                /* Adjust padding */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding-left: 5px;
+                /* Less padding on small screens */
+                justify-content: center;
+                /* Center content */
+                text-align: center;
+                /* Center text */
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+                /* Smaller font size for small screens */
+                margin-bottom: 10px;
+                /* Reduce margin for better spacing */
+            }
+
+            .hero .links {
+                flex-direction: column;
+                /* Stack links vertically */
+                gap: 10px;
+                /* Increase gap between links */
+            }
+
+            .hero .links a {
+                font-size: 1rem;
+                /* Smaller font size */
+                padding: 6px 12px;
+                /* Slightly adjusted padding */
+                width: 100%;
+                /* Full width for links */
+                text-align: center;
+                /* Center the link text */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 40vh;
+                /* Reduce height for very small screens */
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+                /* Further reduce font size for very small screens */
+            }
+
+            .hero .links a {
+                font-size: 0.9rem;
+                /* Make link font smaller */
+                padding: 5px 10px;
+                /* Adjust padding */
+            }
+        }
+
+        .three-column-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 10%;
+    gap: 20px; /* Increased gap between columns */
+    opacity: 0; /* Start invisible */
+    animation: fadeIn 2s ease-in-out forwards; /* Slow fade-in for the section */
+}
+
+.three-column-section .column {
+    flex: 1;
+    text-align: center;
+    animation: slideUp 1.5s ease-in-out forwards; /* Slower animation for columns */
+    opacity: 0; /* Initial opacity for stagger */
+}
+
+.three-column-section .column:nth-child(1) {
+    animation-delay: 0.5s; /* Start delay for first column */
+}
+
+.three-column-section .column:nth-child(2) {
+    animation-delay: 1s; /* Slightly delayed for stagger */
+}
+
+.three-column-section .column:nth-child(3) {
+    animation-delay: 1.5s; /* Further delayed for stagger */
+}
+
+.three-column-section .image-container {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.three-column-section .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.three-column-section .line {
+    width: 50%;
+    height: 2px;
+    margin: 10px auto;
+    background-color: #000;
+}
+
+.three-column-section .text {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .three-column-section {
+        flex-direction: column;
+        gap: 20px; /* Maintain a consistent gap on smaller screens */
+    }
+}
+
+
+
+
+
+
+
+        .blog {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .blog h1,
+        h2 {
+            color: #2c3e50;
+        }
+
+        .blog p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Section styling */
+        .blog1,
+        .blog2,
+        .blog3,
+        .blog4 {
+            margin-bottom: 40px;
+        }
+
+        .blog1 h2,
+        .blog2 h2,
+        .blog3 h2,
+        .blog4 h2 {
+            margin-top: 0;
+        }
+
+        /* Numbered list styling */
+
+        .blog .step-list {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+
+        .blog .step-list li {
+            background-color: #ecf0f1;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Responsive image */
+
+        .blog .responsive-image {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        /* Responsive design adjustments */
+        @media (max-width: 768px) {
+            .blog {
+                width: 95%;
+            }
+
+            .blog1 h2,
+            .blog2 h2,
+            .blog3 h2,
+            .blog4 h2 {
+                font-size: 1.5rem;
+            }
+
+            .blog1 p,
+            .blog2 p,
+            .blog3 p,
+            .blog4 p {
+                font-size: 1rem;
+            }
+        }
+
+
+
+
+        /* General styles for the Nag Bali Pooja section */
+        .nag-bali-pooja {
+            background-color: #f8f8f8;
+            /* Light background color */
+            padding: 20px;
+            /* Padding for the entire section */
+        }
+
+        .nag-bali-pooja .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+            /* Padding around the content */
+        }
+
+        .nag-bali-pooja h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .nag-bali-pooja p {
+            font-size: 1.2em;
+            color: #555;
+            line-height: 1.6;
+            padding: 15px;
+            /* Padding for the text */
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .nag-bali-pooja h2 {
+                font-size: 1.8em;
+            }
+
+            .nag-bali-pooja p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nag-bali-pooja h2 {
+                font-size: 1.5em;
+            }
+
+            .nag-bali-pooja p {
+                font-size: 0.9em;
+            }
+        }
+
+        /* Blog3 Section Styles */
+        .blog3 {
+            background-color: #f4f4f4;
+            /* Light background color */
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .blog3 .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .blog3 h2 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .blog3 p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .blog3 ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .blog3 ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Design for Smaller Screens */
+        @media (max-width: 768px) {
+            .blog3 h2 {
+                font-size: 2em;
+            }
+
+            .blog3 p {
+                font-size: 1em;
+            }
+
+            .blog3 ul {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog3 h2 {
+                font-size: 1.5em;
+            }
+
+            .blog3 p {
+                font-size: 0.9em;
+            }
+
+            .blog3 ul {
+                font-size: 0.9em;
+            }
+        }
+
+        /* General styles for Blog4 section */
+        .blog4 {
+            background-color: #f9f9f9;
+            /* Light background */
+            padding: 20px;
+        }
+
+        .blog4 .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .blog4 h2 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .blog4 h3 {
+            font-size: 1.8em;
+            color: #444;
+            margin-top: 20px;
+        }
+
+        .blog4 p {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .blog4 h2 {
+                font-size: 2em;
+            }
+
+            .blog4 h3 {
+                font-size: 1.5em;
+            }
+
+            .blog4 p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog4 h2 {
+                font-size: 1.6em;
+            }
+
+            .blog4 h3 {
+                font-size: 1.3em;
+            }
+
+            .blog4 p {
+                font-size: 0.9em;
+            }
+        }
+        .custom-gallery-section {
+      text-align: center;
+      padding: 50px 10%;
+    }
+
+    .custom-gallery-section h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .custom-gallery-section hr {
+      width: 80px;
+      height: 3px;
+      background-color: #000;
+      border: none;
+      margin: 0 auto 40px auto;
+    }
+
+    .custom-gallery {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .custom-gallery-item {
+      width: 400px;
+      height: 300px;
+      perspective: 1000px;
+    }
+
+    .custom-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      transform: rotateY(0deg);
+      transition: transform 0.6s ease, box-shadow 0.6s ease;
+    }
+
+    .custom-gallery-item:hover img {
+      transform: rotateY(10deg) rotateX(10deg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 900px) {
+      .custom-gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+      .custom-gallery-item {
+        width: 90%;
+        height: auto;
+      }
+    }
+        /* Footer Styling */
+        footer {
+            background-color: #10375C;
+            color: #F4F6FF;
+            padding: 30px 15%;
+            z-index: 500;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer .column {
+            flex: 1;
+            min-width: 250px;
+            padding: 10px;
+        }
+
+        /* Social Icons */
+        footer .column .social-icons {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-start;
+            margin-top: 20px;
+        }
+
+        footer .column .social-icons a {
+            color: #F4F6FF;
+            font-size: 40px;
+            /* Increased icon size */
+            transition: color 0.3s ease-in-out;
+        }
+
+        footer .column .social-icons a:hover {
+            color: #F3C623;
+        }
+
+        footer a {
+            color: #F4F6FF;
+            /* Make links white */
+            text-decoration: none;
+            /* Optional: removes underline from links */
+        }
+
+        footer a:hover {
+            color: #F3C623;
+            /* Optional: hover effect to change color when mouse is over the link */
+        }
+
+        /* Relative Links Section */
+        footer .column ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            /* Gap between the heading and the list */
+        }
+
+        footer .column ul li {
+            margin: 15px 0;
+            position: relative;
+            font-size: 18px;
+            padding-left: 20px;
+            color: #F4F6FF;
+            transition: color 0.3s;
+        }
+
+        footer .column ul li:hover {
+            color: #F3C623;
+        }
+
+        footer .column ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 20%;
+            width: 10px;
+            height: 10px;
+            background-color: #F3C623;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0);
+            animation: bulletAnimation 0.5s forwards;
+        }
+
+        /* Animation for bullet points */
+        @keyframes bulletAnimation {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Horizontal Line Animation */
+        footer .line {
+            width: 100%;
+            height: 2px;
+            background-color: #F3C623;
+            opacity: 0;
+            transform: scaleX(0);
+            animation: lineAnimation 1s forwards;
+        }
+
+        @keyframes lineAnimation {
+            to {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+        }
+
+        /* Address Section */
+        footer .column .address p {
+            margin: 10px 0;
+        }
+
+        footer .column .address .address-icon,
+        footer .column .address .phone-icon {
+            color: #F3C623;
+            margin-right: 10px;
+        }
+
+        footer .column .address a {
+            color: #F3C623;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer .column .address p+p {
+            margin-top: 10px;
+            /* Add gap between the phone number and the address */
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #F4F6FF;
+        }
+
+        .footer-bottom .line {
+            width: 80%;
+            height: 2px;
+            margin: 0 auto 10px auto;
+            background-color: #F3C623;
+            opacity: 0;
+            transform: scaleX(0);
+            animation: lineAnimation 1s forwards;
+        }
+
+        .footer-bottom p {
+            color: #F4F6FF;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Ensure the footer bottom spans the full width */
+        .footer-bottom {
+            flex-basis: 100%;
+        }
+
+        /* Responsive Design */
+
+        /* For devices with max-width of 1200px (e.g., tablets, small laptops) */
+        @media (max-width: 1200px) {
+            footer {
+                padding: 30px 10%;
+            }
+
+            .footer-columns {
+                justify-content: space-evenly;
+            }
+
+            footer .column {
+                flex: 1 1 45%;
+            }
+        }
+
+        /* For devices with max-width of 768px (e.g., tablets in portrait mode) */
+        @media (max-width: 768px) {
+            footer {
+                padding: 25px 5%;
+            }
+
+            .footer-columns {
+                justify-content: center;
+            }
+
+            footer .column {
+                flex: 1 1 100%;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            footer .column .social-icons {
+                justify-content: center;
+            }
+
+            footer .column .social-icons a {
+                margin: 0 10px;
+                font-size: 30px;
+                /* Slightly smaller icons */
+            }
+
+            footer .column ul {
+                list-style-type: none;
+                /* Remove the bullet points */
+                padding-left: 0;
+                /* Remove padding */
+                margin: 0;
+                /* Remove any default margin */
+            }
+
+            footer .column ul li {
+                font-size: 16px;
+                /* Adjust font size for smaller screens */
+                margin: 10px 0;
+                /* Adjust margin between list items */
+                text-align: left;
+            }
+
+            footer .column .address p {
+                font-size: 14px;
+            }
+        }
+
+
+        /* For devices with max-width of 480px (e.g., smartphones) */
+        @media (max-width: 480px) {
+            footer {
+                padding: 20px 5%;
+            }
+
+            footer .column .logo img {
+                height: 40px;
+            }
+
+            footer .column .social-icons a {
+                font-size: 24px;
+                /* Smaller icons */
+            }
+
+            footer .column ul li {
+                font-size: 14px;
+            }
+
+            footer .column .address p {
+                font-size: 12px;
+            }
+
+            footer .footer-bottom p {
+                font-size: 12px;
+            }
+        }
+        /* Popup Background */
+ #popupOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    /* Popup Content */
+    #popupForm {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      width: 400px;
+      max-width: 100%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    /* Close Button */
+    #closeBtn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* Form Fields */
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    /* Send Button */
+    .button-63 {
+      align-items: center;
+      background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+      border: 0;
+      border-radius: 8px;
+      box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+      box-sizing: border-box;
+      color: #FFFFFF;
+      display: flex;
+      font-family: Phantomsans, sans-serif;
+      font-size: 20px;
+      justify-content: center;
+      line-height: 1em;
+      width: 100%;
+      padding: 19px 24px;
+      cursor: pointer;
+    }
+
+    .button-63:hover {
+      outline: 0;
+    }
+
+    @media (max-width: 600px) {
+      #popupForm {
+        width: 100%;
+        padding: 20px;
+      }
+      input, select {
+        font-size: 14px;
+      }
+      .button-63 {
+        font-size: 18px;
+        padding: 15px;
+      }
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="/Assets/images.jpg" alt="Logo" height="50"> <!-- Replace with your logo -->
+        </div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="/HTML/Home.html">Home</a></li>
+                <li><a href="/HTML/About.html">About Us</a></li>
+                <li><a href="/HTML/Pooja.html">Pooja</a></li>
+                <li><a href="/HTML/Blog2.html">Blogs</a></li>
+                <li><a href="/HTML/Contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="call-now">
+            <!-- Wrap the button with a link to make it callable -->
+            <a href="tel:+918310214624">
+                <button class="button-86" role="button">Call Now</button>
+            </a>
+        </div>
+        <div class="hamburger-menu" id="hamburgerMenu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+    <div id="popupOverlay">
+        <div id="popupForm">
+          <button id="closeBtn">&times;</button>
+          <h2>Pooja Booking Form</h2>
+          <input type="text" id="name" placeholder="Name" required>
+          <input type="tel" id="contact" placeholder="Contact" required>
+          <select id="poojaType">
+            <option value="A">Pooja Type A</option>
+            <option value="B">Pooja Type B</option>
+            <option value="C">Pooja Type C</option>
+          </select>
+          <input type="number" id="numPeople" placeholder="Number of People" min="1" required>
+          <button class="button-63" onclick="sendToWhatsApp()">Send</button>
+        </div>
+      </div>
+    <!-- Mobile Sliding Menu -->
+    <div class="sliding-menu" id="slidingMenu">
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="AboutUs.html">About Us</a></li>
+            <li><a href="Pooja.html">Pooja</a></li>
+            <li><a href="Blogs.html">Blogs</a></li>
+            <li><a href="ContactUs.html">Contact Us</a></li>
+            <li><a href="tel:+918310214624"><button class="button-86">Call Now</button></a></li>
+        </ul>
+    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Contact Narayananagbali Pooja</h1>
+            <div class="links">
+                <a href="Home.html">Home</a>
+                <a href="ContactNarayananagbaliPooja.html">Contact Narayananagbali Pooja</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="three-column-section">
+        <div class="column">
+            <div class="image-container">
+                <img src="/ASSETS/images.jpg" alt="Placeholder Image 1">
+            </div>
+            <div class="line"></div>
+            <div class="text">Pooja</div>
+        </div>
+        <div class="column">
+            <div class="image-container">
+                <img src="/ASSETS/images.jpg" alt="Placeholder Image 2">
+            </div>
+            <div class="line"></div>
+            <div class="text">Pooja</div>
+        </div>
+        <div class="column">
+            <div class="image-container">
+                <img src="/ASSETS/images.jpg" alt="Placeholder Image 3">
+            </div>
+            <div class="line"></div>
+            <div class="text">Pooja</div>
+        </div>
+    </section>
+
+
+
+    <div class="blog">
+        <!-- Section 1: Introduction to Narayana Bali Pooja -->
+        <div class="blog1">
+            <h1>Narayana Bali Pooja</h1>
+            <h2>What is Narayana Bali Pooja?</h2>
+            <p>Narayana Bali Pooja is a ritual described in Garuda Purana which is performed in all cases of unnatural
+                death of a family member. Death can be caused by various reasons such as suicide, murder, starvation,
+                accident, animals, arson, curse, drowning, and unusual diseases which cause untimely death.</p>
+            <p>It is also performed for those who were great sinners. There is neither ritual for cremation, nor
+                tarpana, nor sraddha, nor asaucham for such people. Narayan Bali consists of the same rituals as a Hindu
+                funeral but shortened to three days instead of the customary thirteen. A Brahmin priest at
+                Trimbakeshwar, experienced in conducting these rituals, is engaged by the family performing the ritual.
+            </p>
+            <p>Five rituals are offered to Brahma, Vishnu, Shiva, Yama, and Preta. The ritual for Brahma is not known by
+                Brahmins outside Trimbakeshwar. A dummy body, mostly made of wheat dough, is used. Vedic Mantras are
+                chanted to invoke the lost souls. It is believed that the ritual makes the souls of the dead possess the
+                dummy body, which is later set alight, allowing the soul to liberate and transcend.</p>
+        </div>
+
+        <!-- Section 2: Why Narayan Bali Pooja in Gokarna -->
+        <div class="blog2">
+            <h2>Why should Narayan Bali Pooja be performed in Gokarna?</h2>
+            <p>Gokarna is a small town on the western coast of India, in the Kumta taluk of Uttara Kannada district,
+                Karnataka. It is known as one of the seven important Hindu pilgrimage centers in India, with the main
+                deity being Lord Shiva (Mahabaleshwar). Gokarna holds spiritual significance, and performing rituals
+                such as Maha Mrityunjaya Homam there has special meaning.</p>
+            <p>Gokarna is located at the ear-shaped confluence of the two rivers Gangavali and Aghanashini. The town is
+                revered as Bhookailasa and is often referred to as the Southern Varanasi.</p>
+            <p>It is believed that the Brahmin King Raja Mayooravarma helped bring the first families to Gokarna. The
+                town has a history of over 1,300 years, and since the 15th century, various poojas like Narayan Bali,
+                Tripindi Shraddha, and others have been carried out by its priests.</p>
+        </div>
+
+        <!-- Section 3: Steps to perform Narayan Bali Pooja -->
+        <div class="blog3">
+            <h2>How to perform Narayana Bali Pooja</h2>
+            <p>The following are the 10 steps to perform Narayana Bali Pooja:</p>
+            <ol class="step-list">
+                <li>Narayan Bali Sankalp</li>
+                <li>Pretha Sankalp</li>
+                <li>Vinayaka Pooja</li>
+                <li>Pretha Avahana for departed souls using Sriphala</li>
+                <li>Dash Pind Pradhan</li>
+                <li>Brahma, Vishnu, Rudra, Yama, Savitra Devatha Kalasha Sthapane and Avahanam</li>
+                <li>Panchaka Shraddh</li>
+                <li>Narayan Bali Homa</li>
+                <li>Brahman Muka Dwara Panch Sukta Parayana with Prayaschita Tila Homam</li>
+                <li>Dasha Daan</li>
+            </ol>
+        </div>
+
+        <!-- Section 4: Benefits of Narayan Bali Pooja -->
+        <div class="blog4">
+            <h2>Benefits of the Pooja</h2>
+            <p>By performing Narayana Bali Pooja, we ensure that the soul of the deceased reaches the right destination
+                in peace. This pooja brings various community benefits related to the deceased, including improved
+                physical health, inner peace, success in business and education, marital harmony, and the resolution of
+                interpersonal relationships and marital barriers.</p>
+        </div>
+    </div>
+
+    <section class="nag-bali-pooja">
+        <div class="container">
+            <h2>Nag Bali Pooja</h2>
+            <p>
+                The Nag Bali ritual is similar to Narayan Bali. The only difference is that instead of a dummy human
+                body, a dummy body of a snake (made from dough) is used, but the purpose of the two rituals is
+                completely different.
+            </p>
+        </div>
+    </section>
+    <section class="blog3">
+        <div class="container">
+            <h2>Pitrudosha Nivarana</h2>
+            <p><strong>What is Pitrudosha</strong></p>
+            <p>
+                Pitru Dosha refers to Dosha related to ancestors or deceased family members. It is reflected in the
+                constellations through certain planet combinations and positions. This Dosha causes many problems in
+                life, including family conflicts, struggles, and difficulties in almost every aspect of life, adoption
+                of children, litigation and military issues, marriage failure, obstacles to success, decline in
+                reputation or a series of expected problems.
+            </p>
+
+            <p><strong>Problems occurring by Pitru Dosha</strong></p>
+            <ul>
+                <li>People who suffer from Pitru Dosha must face many problems related to their children. In addition to
+                    their children, they may suffer physical or mental disabilities.</li>
+                <li>Couples may have problems with small things. All these problems are only because of Pitru Dosha.
+                </li>
+                <li>Marriage issues; despite efforts, individuals could not get married on time.</li>
+                <li>A family may always be surrounded by disease, leading to physical and financial problems.</li>
+                <li>If a family suffers from Pitru Dosha, any member may dream of snakes or ancestors wanting food or
+                    cloth.</li>
+            </ul>
+
+            <p><strong>Pitrudosha Nivarana Remedies</strong></p>
+            <ul>
+                <li>Shraddha</li>
+                <li>Bhramin Bhojan</li>
+                <li>Pind Daan</li>
+                <li>Tarapan</li>
+                <li>Pitru Sukt Pooja</li>
+            </ul>
+        </div>
+    </section>
+    <section class="blog4">
+        <div class="container">
+            <h2>Tripindi Shraddha</h2>
+            <h3>What is Tripindi Shraddha?</h3>
+            <p>
+                Tripindi means Pinddaan of our forefathers of previous 3 generations. If anyone in the family from the
+                previous 3 generations has passed away in very young age or old age then those people cause problems to
+                us. To let the people free one has to do Tripindi Shraddha.
+            </p>
+            <p>
+                In the Hindu tradition of India, debt is recognized as three types. These are Pitru runa, Rushi runa,
+                and Paramatma runa. If a person worships (worships) and fasts according to what our Brahmins say, he
+                will get help from Paramatma Runa. This man got relief from Pitru Runa by doing shraddha, pitru poojan,
+                etc. Brahmins are expected to perform various Yadnya, Shraddha, Tarpan, etc. In addition to the memory
+                day, it can also be executed.
+            </p>
+            <h3>When and where can perform Tripindi Pooja?</h3>
+            <p>
+                In any part of the Shukla month of Shravan, Kartik, Pousha, Magh, Phalgun, Vaishakh, Tripindi Shraddha
+                may be performed on any day of Panchami, Ashtami, Ekadashi, Trayodashi, Chaturdashi, or Amavasya. Sun
+                usually stays in Virgo or Libra from 16 September to 15 November during drilling. Pitars are permitted
+                to come freely onto the earth during this time. It’s therefore more advantageous to do Tripindi during
+                this time. Only at Trimbakeshwar, which is a pilgrim of Lord Shiva, can Tripindi Shraddha.
+            </p>
+            <h3>Who can do Tripindi Shraddha?</h3>
+            <p>
+                The couples have the right to do Tripindi together. This formality can also be performed by unmarried
+                persons. If after marriage, Hindu women go to another family, she is also not qualified to perform
+                Tripindi or Shraddha for her parents. But for those deceased who have a relationship with her husband’s
+                relatives, she can do Tripindi or Shraddha. When performing this procedure, you should wear a brand new
+                unwashed white dress.
+            </p>
+            <h3>The result of Tripindi Shraddha</h3>
+            <p>
+                According to the procedure described in Shastra, Tripindi must be executed. In order to get the best
+                results, one should have faith in God. Some people are still alive, but cause trouble to relatives or
+                parents. In order to show and maintain their so-called social status, they have to go through several
+                procedures after death. This function actually happens on a large scale. However, we cannot satisfy the
+                souls of the dead who have completed all the exercises. After doing this because of the dissatisfaction
+                of the soul, we must face several problems.
+            </p>
+        </div>
+    </section>
+    <section class="custom-gallery-section">
+        <h2>Gallery</h2>
+        <hr>
+        <div class="custom-gallery">
+          <div class="custom-gallery-item">
+            <img src="image1.jpg" alt="Image 1">
+          </div>
+          <div class="custom-gallery-item">
+            <img src="image2.jpg" alt="Image 2">
+          </div>
+          <div class="custom-gallery-item">
+            <img src="image3.jpg" alt="Image 3">
+          </div>
+        </div>
+      </section>
+      <section class="custom-gallery-section">
+        <h2>Gallery</h2>
+        <hr>
+        <div class="custom-gallery">
+          <div class="custom-gallery-item">
+            <img src="/download (3).jpg" alt="Image 1">
+          </div>
+          <div class="custom-gallery-item">
+            <img src="/download (3).jpg" alt="Image 2">
+          </div>
+          <div class="custom-gallery-item">
+            <img src="/download (3).jpg" alt="Image 3">
+          </div>
+        </div>
+      </section>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-columns">
+            <!-- First Column -->
+            <div class="column">
+                <div class="logo">
+                    <img src="/Assets/images.jpg
+                    " alt="Logo">
+                </div>
+                <div class="social-icons">
+                    <a href="https://facebook.com" class="fa-brands fa-facebook"></a>
+                    <a href="https://twitter.com" class="fa-brands fa-twitter"></a>
+                    <a href="https://instagram.com" class="fa-brands fa-instagram"></a>
+                </div>
+            </div>
+
+            <!-- Second Column -->
+            <div class="column">
+                <p>Relative Links</p>
+                <div class="line"></div> <!-- Horizontal line -->
+                <ul>
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="AboutUs.html">About Us</a></li>
+                    <li><a href="Pooja.html">Poojas</a></li>
+                    <li><a href="Blogs.html">Blogs</a></li>
+                    <li><a href="ContactUs.html">Contact</a></li>
+                </ul>
+                <!-- <div class="line"></div> Horizontal line below the links -->
+            </div>
+
+            <!-- Third Column -->
+            <div class="column">
+                <p>Address</p>
+                <div class="line"></div> <!-- Horizontal line -->
+                <div class="address">
+                    <p><span class="address-icon">🏠</span>Kudle Beach Road, Car St, Dandebagh, Gokarna, Karnataka
+                        581326</p>
+                    <p><span class="phone-icon">📞</span><a href="tel:+918310214624"
+                            style="color: yellow;">8310214624</a></p>
+                </div>
+                <!-- <div class="line"></div> Horizontal line below address -->
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <!-- <div class="line"></div> Horizontal line above the copyright -->
+            <p>&copy; 2025 YourCompanyName. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+
+
+
+    <!-- FontAwesome for Social Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+        // Function to toggle the menu
+        function toggleMenu() {
+            const slidingMenu = document.getElementById('slidingMenu');
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+
+            slidingMenu.classList.toggle('open');
+            hamburgerMenu.classList.toggle('open');
+        }
+
+        // Close the menu if the user clicks outside the sliding menu or hamburger menu
+        document.addEventListener('click', function (event) {
+            const slidingMenu = document.getElementById('slidingMenu');
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+
+            // Check if the clicked target is not the menu or its children
+            if (!slidingMenu.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+                slidingMenu.classList.remove('open');
+                hamburgerMenu.classList.remove('open');
+            }
+        });
+
+    </script>
+  <!-- popup -->
+  <script>
+    // Close Button Functionality
+    document.getElementById('closeBtn').onclick = function() {
+      document.getElementById('popupOverlay').style.display = 'none';
+    };
+
+    // WhatsApp Integration
+    function sendToWhatsApp() {
+      const name = document.getElementById('name').value;
+      const contact = document.getElementById('contact').value;
+      const poojaType = document.getElementById('poojaType').value;
+      const numPeople = document.getElementById('numPeople').value;
+      
+      if (name && contact && numPeople) {
+        const message = `Name: ${name}%0AContact: ${contact}%0APooja Type: ${poojaType}%0ANumber of People: ${numPeople}`;
+        window.open(`https://wa.me/918310214624?text=${message}`, '_blank');
+      } else {
+        alert('Please fill all fields.');
+      }
+    }
+  </script>
+</body>
+
+</html>

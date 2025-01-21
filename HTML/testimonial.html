@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrolling Testimonial</title>
+  <style>
+    /* Scoped styles inside .testimonial-section */
+    .testimonial-section {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .testimonial-container {
+      width: 70%; /* Reduced width */
+      height: 200px; /* Fixed height */
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 20px; /* Padding for top, bottom, left, and right */
+      background: rgba(255, 255, 255, 0.2); /* Glass effect */
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      margin: 50px auto; /* Centering the container */
+    }
+
+    .testimonial {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      position: absolute;
+      transition: left 0.5s ease-in-out;
+      padding: 0 20px; /* Padding for text */
+    }
+
+    .testimonial-text {
+      font-size: 24px;
+      text-align: center; /* Center the text */
+      flex: 1;
+      padding: 0 20px; /* Padding for text */
+    }
+
+    .testimonial-author {
+      position: absolute;
+      left: 20px; /* Align author text to the left */
+      font-size: 20px;
+      color: #333;
+      text-align: left; /* Align author text to the left */
+      margin-top: 40px; /* Add space below the testimonial text */
+      margin-left: 40px;
+    }
+
+    .scroll-button {
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .left {
+      left: 10px;
+    }
+
+    .right {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="popupOverlay">
+    <div id="popupForm">
+      <button id="closeBtn">&times;</button>
+      <h2>Pooja Booking Form</h2>
+      <input type="text" id="name" placeholder="Name" required>
+      <input type="tel" id="contact" placeholder="Contact" required>
+      <select id="poojaType">
+        <option value="A">Pooja Type A</option>
+        <option value="B">Pooja Type B</option>
+        <option value="C">Pooja Type C</option>
+      </select>
+      <input type="number" id="numPeople" placeholder="Number of People" min="1" required>
+      <button class="button-63" onclick="sendToWhatsApp()">Send</button>
+    </div>
+  </div>
+  <!-- Wrapping everything in the testimonial-section -->
+  <section class="testimonial-section">
+    <div class="testimonial-container">
+      <div class="testimonial" style="left: 0%;">
+        <p class="testimonial-text">Hello, this is Kavy</p>
+        <p class="testimonial-author">- Kavya</p>
+      </div>
+      <div class="testimonial" style="left: 100%;">
+        <p class="testimonial-text">Hello, this is Kavy</p>
+        <p class="testimonial-author">- Kavya</p>
+      </div>
+      <!-- Add more testimonials as needed -->
+      <button class="scroll-button left" onclick="scrollTestimonial(-1)">&#10094;</button>
+      <button class="scroll-button right" onclick="scrollTestimonial(1)">&#10095;</button>
+    </div>
+  </section>
+
+  <script>
+    let currentIndex = 0;
+
+    const testimonials = document.querySelectorAll('.testimonial');
+    const totalTestimonials = testimonials.length;
+
+    function scrollTestimonial(direction) {
+      currentIndex = (currentIndex + direction + totalTestimonials) % totalTestimonials;
+      updateTestimonialPosition();
+    }
+
+    function updateTestimonialPosition() {
+      testimonials.forEach((testimonial, index) => {
+        const offset = (index - currentIndex) * 100;
+        testimonial.style.left = `${offset}%`;
+      });
+    }
+
+    // Auto scroll every 6 seconds
+    setInterval(() => {
+      scrollTestimonial(1);
+    }, 6000);
+  </script>
+
+</body>
+</html>

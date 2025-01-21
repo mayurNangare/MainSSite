@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Header with Call Now</title>
+    <link rel="stylesheet" href="">
+    <!-- Include FontAwesome CDN in the <head> for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+
+
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header */
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 10%;
+            background-color: #F4F6FF;
+            color: #10375C;
+            position: relative;
+        }
+
+        /* Navigation Links */
+        .nav-links ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links ul li {
+            margin: 0 15px;
+        }
+
+        .nav-links ul li a {
+            color: #10375C;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .call-now button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            /* Initially hide the hamburger menu on desktop */
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 100;
+            height: auto;
+            padding: 5px;
+        }
+
+        .hamburger-menu .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        .hamburger-menu.open .bar:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger-menu.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.open .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+
+            /* On mobile, hide desktop menu */
+            .nav-links {
+                display: none;
+                /* Hide the normal nav links */
+            }
+
+            /* Show the hamburger menu on mobile */
+            .hamburger-menu {
+                display: flex;
+                /* Show hamburger menu on mobile */
+            }
+
+            .call-now {
+                display: none;
+                /* Hide the 'Call Now' button on mobile */
+            }
+
+            /* Mobile Sliding Menu */
+            /* Mobile Sliding Menu */
+            .sliding-menu {
+                display: none;
+                position: fixed;
+                top: 4rem;
+                /* Adjusted to make the hamburger cross mark visible */
+                right: -250px;
+                width: 250px;
+                height: auto;
+                max-height: 60%;
+                background-color: #333;
+                padding-top: 60px;
+                transition: right 0.3s ease-in-out;
+                z-index: 1000;
+            }
+
+
+            .sliding-menu.open {
+                right: 0;
+                display: block;
+            }
+
+            .sliding-menu ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            .sliding-menu ul li {
+                padding: 10px;
+                text-align: left;
+            }
+
+            .sliding-menu ul li a {
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+            }
+
+            .sliding-menu ul li button {
+                margin-top: 10px;
+                color: white;
+                background: transparent;
+                border: none;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            /* Adjust the hamburger button */
+            .hamburger-menu .bar {
+                width: 30px;
+                height: 4px;
+            }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 769px) {
+
+            /* On desktop, show the regular navigation links */
+            .nav-links {
+                display: flex;
+            }
+
+            /* Hide the hamburger menu on desktop */
+            .hamburger-menu {
+                display: none;
+            }
+
+            .call-now {
+                display: block;
+                /* Show the 'Call Now' button on desktop */
+            }
+
+            /* Ensure the sliding menu is hidden on desktop */
+            .sliding-menu {
+                display: none;
+            }
+        }
+
+        /* Button 86 styles */
+        .button-86 {
+            all: unset;
+            width: 100px;
+            height: 30px;
+            font-size: 16px;
+            background: transparent;
+            border: none;
+            position: relative;
+            color: #f0f0f0;
+            cursor: pointer;
+            z-index: 1;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .button-86::after,
+        .button-86::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: -99999;
+            transition: all .4s;
+        }
+
+        .button-86::before {
+            transform: translate(0%, 0%);
+            width: 100%;
+            height: 100%;
+            background: #28282d;
+            border-radius: 10px;
+        }
+
+        .button-86::after {
+            transform: translate(10px, 10px);
+            width: 35px;
+            height: 35px;
+            background: #ffffff15;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 50px;
+        }
+
+        .button-86:hover::before {
+            transform: translate(5%, 20%);
+            width: 110%;
+            height: 110%;
+        }
+
+        .button-86:hover::after {
+            border-radius: 10px;
+            transform: translate(0, 0);
+            width: 100%;
+            height: 100%;
+        }
+
+        .button-86:active::after {
+            transition: 0s;
+            transform: translate(0, 5%);
+        }
+
+
+        /* Hero Section */
+        .hero {
+            height: 50vh;
+            /* Set the height to 50% of the viewport */
+            background: url('/ASSETS/images.jpg') center/cover no-repeat;
+            /* Set your background image here */
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            /* Align the content to the left */
+            padding-left: 20px;
+            /* Add some padding to the left side */
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 50%;
+            /* Limit the content width to 50% of the container */
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .hero .links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero .links a {
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .hero .links a:hover {
+            background-color: white;
+            color: #333;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 1200px) {
+            .hero {
+                padding-left: 15px;
+                /* Slightly reduce padding for medium screens */
+                justify-content: flex-start;
+                /* Align content to the left */
+            }
+
+            .hero-content {
+                max-width: 60%;
+                /* Slightly increase content width */
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+                /* Adjust font size for medium screens */
+            }
+
+            .hero .links a {
+                font-size: 1.1rem;
+                /* Adjust link font size */
+                padding: 7px 12px;
+                /* Slightly reduce padding */
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                justify-content: center;
+                padding-left: 10px;
+                /* Center content on medium to small screens */
+            }
+
+            .hero-content {
+                max-width: 70%;
+                /* Increase content width to fill more space */
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                /* Smaller font size */
+            }
+
+            .hero .links a {
+                font-size: 1rem;
+                /* Smaller font size for links */
+                padding: 6px 10px;
+                /* Adjust padding */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding-left: 5px;
+                /* Less padding on small screens */
+                justify-content: center;
+                /* Center content */
+                text-align: center;
+                /* Center text */
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+                /* Smaller font size for small screens */
+                margin-bottom: 10px;
+                /* Reduce margin for better spacing */
+            }
+
+            .hero .links {
+                flex-direction: column;
+                /* Stack links vertically */
+                gap: 10px;
+                /* Increase gap between links */
+            }
+
+            .hero .links a {
+                font-size: 1rem;
+                /* Smaller font size */
+                padding: 6px 12px;
+                /* Slightly adjusted padding */
+                width: 100%;
+                /* Full width for links */
+                text-align: center;
+                /* Center the link text */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 40vh;
+                /* Reduce height for very small screens */
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+                /* Further reduce font size for very small screens */
+            }
+
+            .hero .links a {
+                font-size: 0.9rem;
+                /* Make link font smaller */
+                padding: 5px 10px;
+                /* Adjust padding */
+            }
+        }
+
+
+
+        /* Section Styles */
+        .responsive-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 40px 5%;
+            gap: 15px;
+            /* Reduced gap between columns */
+        }
+
+        .responsive-section .column {
+            flex: 1 1 calc(33.333% - 15px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            background-color: #f9f9f9;
+            padding: 20px 20px 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 400px;
+        }
+
+        .box .circle {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 60px;
+            height: 60px;
+            background-color: #38D2D2;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            animation: glowEffect 1.5s infinite alternate;
+        }
+
+        /* Keyframes for glow effect */
+        @keyframes glowEffect {
+            0% {
+                box-shadow: 0 0 10px rgba(56, 210, 210, 0.6);
+            }
+
+            50% {
+                box-shadow: 0 0 20px rgba(56, 210, 210, 1);
+            }
+
+            100% {
+                box-shadow: 0 0 10px rgba(56, 210, 210, 0.6);
+            }
+        }
+
+
+        .circle .top-text {
+            font-size: 18px;
+            margin-bottom: 2px;
+            /* Space between 17 and Aug */
+        }
+
+        .circle .bottom-text {
+            font-size: 14px;
+        }
+
+        /* Ensure image fits the box */
+        .box img {
+            width: 100%;
+            /* Make image fill the width of the box */
+            height: 200px;
+            /* Fixed height */
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .box hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 15px 0;
+        }
+
+        .box h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            min-height: 50px;
+        }
+
+        .box p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .button-91 {
+            color: #fff;
+            padding: 15px 25px;
+            /* Increased padding for height */
+            font-size: 14px;
+            /* Font size */
+            background-color: #38D2D2;
+            background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
+            box-shadow: inset -3px -3px 9px rgba(255, 255, 255, 0.25), inset 0px 3px 9px rgba(255, 255, 255, 0.3), inset 0px 1px 1px rgba(255, 255, 255, 0.6), inset 0px -8px 36px rgba(0, 0, 0, 0.3), inset 0px 1px 5px rgba(255, 255, 255, 0.6), 2px 19px 31px rgba(0, 0, 0, 0.2);
+            border-radius: 14px;
+            font-weight: bold;
+            border: 0;
+            user-select: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            max-width: 180px;
+            /* Maximum width of the button */
+            width: 100%;
+            /* Make button width responsive */
+            text-align: center;
+            /* Center the text horizontally */
+
+            /* Flexbox to center content vertically */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-91:hover {
+            background-color: #2ab8b8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .responsive-section {
+                padding: 40px 5%;
+            }
+
+            .column {
+                flex: 1 1 100%;
+            }
+
+            .box {
+                max-width: 100%;
+                min-height: 350px;
+                padding: 20px 20px 40px 20px;
+            }
+
+            /* Adjust fixed image dimensions for small screens */
+            .box img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+        }
+
+        /* Add gap between rows */
+        .responsive-section+.responsive-section {
+            margin-top: 40px;
+        }
+
+
+
+        /* Footer Styling */
+        footer {
+            background-color: #10375C;
+            color: #F4F6FF;
+            padding: 30px 15%;
+            z-index: 500;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer .column {
+            flex: 1;
+            min-width: 250px;
+            padding: 10px;
+        }
+
+        /* Social Icons */
+        footer .column .social-icons {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-start;
+            margin-top: 20px;
+        }
+
+        footer .column .social-icons a {
+            color: #F4F6FF;
+            font-size: 40px;
+            /* Increased icon size */
+            transition: color 0.3s ease-in-out;
+        }
+
+        footer .column .social-icons a:hover {
+            color: #F3C623;
+        }
+
+        footer a {
+            color: #F4F6FF;
+            /* Make links white */
+            text-decoration: none;
+            /* Optional: removes underline from links */
+        }
+
+        footer a:hover {
+            color: #F3C623;
+            /* Optional: hover effect to change color when mouse is over the link */
+        }
+
+        /* Relative Links Section */
+        footer .column ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            /* Gap between the heading and the list */
+        }
+
+        footer .column ul li {
+            margin: 15px 0;
+            position: relative;
+            font-size: 18px;
+            padding-left: 20px;
+            color: #F4F6FF;
+            transition: color 0.3s;
+        }
+
+        footer .column ul li:hover {
+            color: #F3C623;
+        }
+
+        footer .column ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 20%;
+            width: 10px;
+            height: 10px;
+            background-color: #F3C623;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0);
+            animation: bulletAnimation 0.5s forwards;
+        }
+
+        /* Animation for bullet points */
+        @keyframes bulletAnimation {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Horizontal Line Animation */
+        footer .line {
+            width: 100%;
+            height: 2px;
+            background-color: #F3C623;
+            opacity: 0;
+            transform: scaleX(0);
+            animation: lineAnimation 1s forwards;
+        }
+
+        @keyframes lineAnimation {
+            to {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+        }
+
+        /* Address Section */
+        footer .column .address p {
+            margin: 10px 0;
+        }
+
+        footer .column .address .address-icon,
+        footer .column .address .phone-icon {
+            color: #F3C623;
+            margin-right: 10px;
+        }
+
+        footer .column .address a {
+            color: #F3C623;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer .column .address p+p {
+            margin-top: 10px;
+            /* Add gap between the phone number and the address */
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #F4F6FF;
+        }
+
+        .footer-bottom .line {
+            width: 80%;
+            height: 2px;
+            margin: 0 auto 10px auto;
+            background-color: #F3C623;
+            opacity: 0;
+            transform: scaleX(0);
+            animation: lineAnimation 1s forwards;
+        }
+
+        .footer-bottom p {
+            color: #F4F6FF;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Ensure the footer bottom spans the full width */
+        .footer-bottom {
+            flex-basis: 100%;
+        }
+
+        /* Responsive Design */
+
+        /* For devices with max-width of 1200px (e.g., tablets, small laptops) */
+        @media (max-width: 1200px) {
+            footer {
+                padding: 30px 10%;
+            }
+
+            .footer-columns {
+                justify-content: space-evenly;
+            }
+
+            footer .column {
+                flex: 1 1 45%;
+            }
+        }
+
+        /* For devices with max-width of 768px (e.g., tablets in portrait mode) */
+        @media (max-width: 768px) {
+            footer {
+                padding: 25px 5%;
+            }
+
+            .footer-columns {
+                justify-content: center;
+            }
+
+            footer .column {
+                flex: 1 1 100%;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            footer .column .social-icons {
+                justify-content: center;
+            }
+
+            footer .column .social-icons a {
+                margin: 0 10px;
+                font-size: 30px;
+                /* Slightly smaller icons */
+            }
+
+            footer .column ul {
+                list-style-type: none;
+                /* Remove the bullet points */
+                padding-left: 0;
+                /* Remove padding */
+                margin: 0;
+                /* Remove any default margin */
+            }
+
+            footer .column ul li {
+                font-size: 16px;
+                /* Adjust font size for smaller screens */
+                margin: 10px 0;
+                /* Adjust margin between list items */
+                text-align: left;
+            }
+
+            footer .column .address p {
+                font-size: 14px;
+            }
+        }
+
+
+        /* For devices with max-width of 480px (e.g., smartphones) */
+        @media (max-width: 480px) {
+            footer {
+                padding: 20px 5%;
+            }
+
+            footer .column .logo img {
+                height: 40px;
+            }
+
+            footer .column .social-icons a {
+                font-size: 24px;
+                /* Smaller icons */
+            }
+
+            footer .column ul li {
+                font-size: 14px;
+            }
+
+            footer .column .address p {
+                font-size: 12px;
+            }
+
+            footer .footer-bottom p {
+                font-size: 12px;
+            }
+        }
+        /* Popup Background */
+ #popupOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    /* Popup Content */
+    #popupForm {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      width: 400px;
+      max-width: 100%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    /* Close Button */
+    #closeBtn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* Form Fields */
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    /* Send Button */
+    .button-63 {
+      align-items: center;
+      background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+      border: 0;
+      border-radius: 8px;
+      box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+      box-sizing: border-box;
+      color: #FFFFFF;
+      display: flex;
+      font-family: Phantomsans, sans-serif;
+      font-size: 20px;
+      justify-content: center;
+      line-height: 1em;
+      width: 100%;
+      padding: 19px 24px;
+      cursor: pointer;
+    }
+
+    .button-63:hover {
+      outline: 0;
+    }
+
+    @media (max-width: 600px) {
+      #popupForm {
+        width: 100%;
+        padding: 20px;
+      }
+      input, select {
+        font-size: 14px;
+      }
+      .button-63 {
+        font-size: 18px;
+        padding: 15px;
+      }
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="/Assets/images.jpg" alt="Logo" height="50"> <!-- Replace with your logo -->
+        </div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="/HTML/Home.html">Home</a></li>
+                <li><a href="/HTML/About.html">About Us</a></li>
+                <li><a href="/HTML/Pooja.html">Pooja</a></li>
+                <li><a href="/HTML/Blog2.html">Blogs</a></li>
+                <li><a href="/HTML/Contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="call-now">
+            <!-- Wrap the button with a link to make it callable -->
+            <a href="tel:+918310214624">
+                <button class="button-86" role="button">Call Now</button>
+            </a>
+        </div>
+        <div class="hamburger-menu" id="hamburgerMenu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+    <div id="popupOverlay">
+        <div id="popupForm">
+          <button id="closeBtn">&times;</button>
+          <h2>Pooja Booking Form</h2>
+          <input type="text" id="name" placeholder="Name" required>
+          <input type="tel" id="contact" placeholder="Contact" required>
+          <select id="poojaType">
+            <option value="A">Pooja Type A</option>
+            <option value="B">Pooja Type B</option>
+            <option value="C">Pooja Type C</option>
+          </select>
+          <input type="number" id="numPeople" placeholder="Number of People" min="1" required>
+          <button class="button-63" onclick="sendToWhatsApp()">Send</button>
+        </div>
+      </div>
+    <!-- Mobile Sliding Menu -->
+    <div class="sliding-menu" id="slidingMenu">
+        <ul>
+            <li><a href="/HTML/Home.html">Home</a></li>
+            <li><a href="/HTML/About.html">About Us</a></li>
+            <li><a href="/HTML/Pooja.html">Pooja</a></li>
+            <li><a href="/HTML/Blog2.html">Blogs</a></li>
+            <li><a href="/HTML/Contact.html">Contact Us</a></li>
+        </ul>
+    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Contact Narayananagbali Pooja</h1>
+            <div class="links">
+                <a href="Home.html">Home</a>
+                <a href="ContactNarayananagbaliPooja.html">Contact Narayananagbali Pooja</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- First Row -->
+    <section class="responsive-section">
+        <div class="column">
+            <div class="box">
+                <div class="circle">
+                    <span class="top-text">17</span>
+                    <span class="bottom-text">Aug</span>
+                </div>
+                <img src="/ASSETS/images.jpg" alt="Image 1" class="img">
+                <hr>
+                <h3>How To Do Pitru Paksha Puja At Home</h3>
+                <p>Pitru Paksha is a sacred period in the Hindu calendar when families pay homage to their departed
+                    ancestors. This tradition is observed by offering food, prayers, and rituals...</p>
+                <button class="button-91" onclick="window.location.href='page1.html'">Read More</button>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="box">
+                <div class="circle">
+                    <span class="top-text">17</span>
+                    <span class="bottom-text">Aug</span>
+                </div>
+                <img src="/ASSETS/images.jpg" alt="Image 2" class="img">
+                <hr>
+                <h3>How To Do Pitru Paksha Puja At Home</h3>
+                <p>Pitru Paksha is a sacred period in the Hindu calendar when families pay homage to their departed
+                    ancestors. This tradition is observed by offering food, prayers, and rituals...</p>
+                <button class="button-91" onclick="window.location.href='page2.html'">Read More</button>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="box">
+                <div class="circle">
+                    <span class="top-text">17</span>
+                    <span class="bottom-text">Aug</span>
+                </div>
+                <img src="/ASSETS/images.jpg" alt="Image 3" class="img">
+                <hr>
+                <h3>How To Do Pitru Paksha Puja At Home</h3>
+                <p>Pitru Paksha is a sacred period in the Hindu calendar when families pay homage to their departed
+                    ancestors. This tradition is observed by offering food, prayers, and rituals...</p>
+                <button class="button-91" onclick="window.location.href='page3.html'">Read More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Second Row (Same Design) -->
+    <section class="responsive-section">
+        <div class="column">
+            <div class="box">
+                <div class="circle">
+                    <span class="top-text">18</span>
+                    <span class="bottom-text">Aug</span>
+                </div>
+                <img src="/ASSETS/images.jpg" alt="Image 4" class="img">
+                <hr>
+                <h3>How To Do Pitru Paksha Puja At Home</h3>
+                <p>Pitru Paksha is a sacred period in the Hindu calendar when families pay homage to their departed
+                    ancestors. This tradition is observed by offering food, prayers, and rituals...</p>
+                <button class="button-91" onclick="window.location.href='page4.html'">Read More</button>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="box">
+                <div class="circle">
+                    <span class="top-text">18</span>
+                    <span class="bottom-text">Aug</span>
+                </div>
+                <img src="/ASSETS/images.jpg" alt="Image 5" class="img">
+                <hr>
+                <h3>How To Do Pitru Paksha Puja At Home</h3>
+                <p>Pitru Paksha is a sacred period in the Hindu calendar when families pay homage to their departed
+                    ancestors. This tradition is observed by offering food, prayers, and rituals...</p>
+                <button class="button-91" onclick="window.location.href='page5.html'">Read More</button>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="box">
+                <div class="circle">
+                    <span class="top-text">18</span>
+                    <span class="bottom-text">Aug</span>
+                </div>
+                <img src="/ASSETS/images.jpg" alt="Image 6" class="img">
+                <hr>
+                <h3>How To Do Pitru Paksha Puja At Home</h3>
+                <p>Pitru Paksha is a sacred period in the Hindu calendar when families pay homage to their departed
+                    ancestors. This tradition is observed by offering food, prayers, and rituals...</p>
+                <button class="button-91" onclick="window.location.href='page6.html'">Read More</button>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-columns">
+            <!-- First Column -->
+            <div class="column">
+                <div class="logo">
+                    <img src="/Assets/images.jpg
+                    " alt="Logo">
+                </div>
+                <div class="social-icons">
+                    <a href="https://facebook.com" class="fa-brands fa-facebook"></a>
+                    <a href="https://twitter.com" class="fa-brands fa-twitter"></a>
+                    <a href="https://instagram.com" class="fa-brands fa-instagram"></a>
+                </div>
+            </div>
+
+            <!-- Second Column -->
+            <div class="column">
+                <p>Relative Links</p>
+                <div class="line"></div> <!-- Horizontal line -->
+                <ul>
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="AboutUs.html">About Us</a></li>
+                    <li><a href="Pooja.html">Poojas</a></li>
+                    <li><a href="Blogs.html">Blogs</a></li>
+                    <li><a href="ContactUs.html">Contact</a></li>
+                </ul>
+                <!-- <div class="line"></div> Horizontal line below the links -->
+            </div>
+
+            <!-- Third Column -->
+            <div class="column">
+                <p>Address</p>
+                <div class="line"></div> <!-- Horizontal line -->
+                <div class="address">
+                    <p><span class="address-icon">🏠</span>Kudle Beach Road, Car St, Dandebagh, Gokarna, Karnataka
+                        581326</p>
+                    <p><span class="phone-icon">📞</span><a href="tel:+918310214624"
+                            style="color: yellow;">8310214624</a></p>
+                </div>
+                <!-- <div class="line"></div> Horizontal line below address -->
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <!-- <div class="line"></div> Horizontal line above the copyright -->
+            <p>&copy; 2025 YourCompanyName. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+
+
+
+    <!-- FontAwesome for Social Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+        // Function to toggle the menu
+        function toggleMenu() {
+            const slidingMenu = document.getElementById('slidingMenu');
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+
+            slidingMenu.classList.toggle('open');
+            hamburgerMenu.classList.toggle('open');
+        }
+
+        // Close the menu if the user clicks outside the sliding menu or hamburger menu
+        document.addEventListener('click', function (event) {
+            const slidingMenu = document.getElementById('slidingMenu');
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+
+            // Check if the clicked target is not the menu or its children
+            if (!slidingMenu.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+                slidingMenu.classList.remove('open');
+                hamburgerMenu.classList.remove('open');
+            }
+        });
+
+    </script>
+  <!-- popup -->
+  <script>
+    // Close Button Functionality
+    document.getElementById('closeBtn').onclick = function() {
+      document.getElementById('popupOverlay').style.display = 'none';
+    };
+
+    // WhatsApp Integration
+    function sendToWhatsApp() {
+      const name = document.getElementById('name').value;
+      const contact = document.getElementById('contact').value;
+      const poojaType = document.getElementById('poojaType').value;
+      const numPeople = document.getElementById('numPeople').value;
+      
+      if (name && contact && numPeople) {
+        const message = `Name: ${name}%0AContact: ${contact}%0APooja Type: ${poojaType}%0ANumber of People: ${numPeople}`;
+        window.open(`https://wa.me/918310214624?text=${message}`, '_blank');
+      } else {
+        alert('Please fill all fields.');
+      }
+    }
+  </script>
+</body>
+
+</html>

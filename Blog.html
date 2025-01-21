@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitru Paksha Puja</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Section Styles */
+        .responsive-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 40px 5%;
+            gap: 15px;
+            /* Reduced gap between columns */
+        }
+
+        .column {
+            flex: 1 1 calc(33.333% - 15px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            background-color: #f9f9f9;
+            padding: 20px 20px 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 400px;
+        }
+
+        .box .circle {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 60px;
+            /* Increased size */
+            height: 60px;
+            /* Increased size */
+            background-color: #38D2D2;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            /* Stack the text vertically */
+            justify-content: center;
+            /* Center content vertically */
+            align-items: center;
+            /* Center content horizontally */
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            /* Ensures text is centered inside the circle */
+        }
+
+        .circle .top-text {
+            font-size: 18px;
+            margin-bottom: 2px;
+            /* Space between 17 and Aug */
+        }
+
+        .circle .bottom-text {
+            font-size: 14px;
+        }
+
+        /* Ensure image fits the box */
+        .box img {
+            width: 100%;
+            /* Make image fill the width of the box */
+            height: 200px;
+            /* Fixed height */
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .box hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 15px 0;
+        }
+
+        .box h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            min-height: 50px;
+        }
+
+        .box p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .button-91 {
+            color: #fff;
+            padding: 15px 25px;
+            /* Increased padding for height */
+            font-size: 14px;
+            /* Font size */
+            background-color: #38D2D2;
+            background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
+            box-shadow: inset -3px -3px 9px rgba(255, 255, 255, 0.25), inset 0px 3px 9px rgba(255, 255, 255, 0.3), inset 0px 1px 1px rgba(255, 255, 255, 0.6), inset 0px -8px 36px rgba(0, 0, 0, 0.3), inset 0px 1px 5px rgba(255, 255, 255, 0.6), 2px 19px 31px rgba(0, 0, 0, 0.2);
+            border-radius: 14px;
+            font-weight: bold;
+            border: 0;
+            user-select: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            max-width: 180px;
+            /* Maximum width of the button */
+            width: 100%;
+            /* Make button width responsive */
+            text-align: center;
+            /* Center the text horizontally */
+
+            /* Flexbox to center content vertically */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-91:hover {
+            background-color: #2ab8b8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .responsive-section {
+                padding: 40px 5%;
+            }
+
+            .column {
+                flex: 1 1 100%;
+            }
+
+            .box {
+                max-width: 100%;
+                min-height: 350px;
+                padding: 20px 20px 40px 20px;
+            }
+
+            /* Adjust fixed image dimensions for small screens */
+            .box img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+        }
+
+        /* Add gap between rows */
+        .responsive-section+.responsive-section {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- First Row -->
+    <section class="responsive-section">
+        <div class="column">
+            <div class="box">
+                <div class="circle">
+                    <span class="top-text">17</span>
+                    <span class="bottom-text">Aug</span>
+                </div>
+                <img src="/budda.jpg" alt="Image 1" class="img">
+                <hr>
+                <h3>How To Do Pitru Paksha Puja At Home</h3>
+                <p>Pitru Paksha is a sacred period in the Hindu calendar when families pay homage to their departed
+                    ancestors. This tradition is observed by offering food, prayers, and rituals...</p>
+                <button class="button-91" onclick="window.location.href='page1.html'">Read More</button>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="box">
+                <div class="circle">
+                    <span class="top-text">17</span>
+                    <span class="bottom-text">Aug</span>
+                </div>
+                <img src="image2.jpg" alt="Image 2" class="img">
+                <hr>
+                <h3>How To Do Pitru Paksha Puja At Home</h3>
+                <p>Pitru Paksha is a sacred period in the Hindu calendar when families pay homage to their departed
+                    ancestors. This tradition is observed by offering food, prayers, and rituals...</p>
+                <button class="button-91" onclick="window.location.href='page2.html'">Read More</button>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="box">
+                <div class="circle">
+                    <span class="top-text">17</span>
+                    <span class="bottom-text">Aug</span>
+                </div>
+                <img src="image3.jpg" alt="Image 3" class="img">
+                <hr>
+                <h3>How To Do Pitru Paksha Puja At Home</h3>
+                <p>Pitru Paksha is a sacred period in the Hindu calendar when families pay homage to their departed
+                    ancestors. This tradition is observed by offering food, prayers, and rituals...</p>
+                <button class="button-91" onclick="window.location.href='page3.html'">Read More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Second Row (Same Design) -->
+    <section class="responsive-section">
+        <div class="column">
+            <div class="box">
+                <div class="circle">
+                    <span class="top-text">18</span>
+                    <span class="bottom-text">Aug</span>
+                </div>
+                <img src="image4.jpg" alt="Image 4" class="img">
+                <hr>
+                <h3>How To Do Pitru Paksha Puja At Home</h3>
+                <p>Pitru Paksha is a sacred period in the Hindu calendar when families pay homage to their departed
+                    ancestors. This tradition is observed by offering food, prayers, and rituals...</p>
+                <button class="button-91" onclick="window.location.href='page4.html'">Read More</button>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="box">
+                <div class="circle">
+                    <span class="top-text">18</span>
+                    <span class="bottom-text">Aug</span>
+                </div>
+                <img src="image5.jpg" alt="Image 5" class="img">
+                <hr>
+                <h3>How To Do Pitru Paksha Puja At Home</h3>
+                <p>Pitru Paksha is a sacred period in the Hindu calendar when families pay homage to their departed
+                    ancestors. This tradition is observed by offering food, prayers, and rituals...</p>
+                <button class="button-91" onclick="window.location.href='page5.html'">Read More</button>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="box">
+                <div class="circle">
+                    <span class="top-text">18</span>
+                    <span class="bottom-text">Aug</span>
+                </div>
+                <img src="image6.jpg" alt="Image 6" class="img">
+                <hr>
+                <h3>How To Do Pitru Paksha Puja At Home</h3>
+                <p>Pitru Paksha is a sacred period in the Hindu calendar when families pay homage to their departed
+                    ancestors. This tradition is observed by offering food, prayers, and rituals...</p>
+                <button class="button-91" onclick="window.location.href='page6.html'">Read More</button>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
